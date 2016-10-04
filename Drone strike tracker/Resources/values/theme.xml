@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="theme_custom_background">#fff5f5f5</color><style name="Theme.Custom" parent="@android:style/Theme.Material.Light">
+    <item name="android:colorPrimary">#ff03a9f4</item>
+    <item name="android:colorPrimaryDark">#ff0288d1</item>
+    <item name="android:statusBarColor">#ff0288d1</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:colorBackground">@color/theme_custom_background</item><item name="android:windowBackground">?android:attr/colorBackground</item><item name="android:colorAccent">#fff44336</item><item name="android:colorControlNormal">#fff44336</item><item name="android:colorButtonNormal">#ff00c853</item><item name="android:textColorPrimary">@android:color/white</item></style>
+</resources>

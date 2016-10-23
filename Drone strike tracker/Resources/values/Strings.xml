@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="ApplicationName">Drone strike tracker</string>
+
+  <!-- Settings strings -->
+  <string name="MapTypeTitle">Map type</string>
+  <string name="DefaultMapType">Hybrid</string>
 </resources>

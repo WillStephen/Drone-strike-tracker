@@ -3,10 +3,25 @@
   <color name="theme_custom_background">#fff5f5f5</color>
   
   <style name="Theme.Custom" parent="@style/Theme.AppCompat.Light.NoActionBar">
-    <item name="android:colorPrimary">#ff00bcd4</item>
-    <item name="android:colorPrimaryDark">#ff0097a7</item>
-    <item name="android:statusBarColor">#ff0097a7</item>
+    <item name="android:colorPrimary">@color/primary</item>
+    <item name="android:colorPrimaryDark">@color/primaryDark</item>
+    <item name="android:statusBarColor">@color/primaryDark</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
-    <item name="android:colorBackground">@color/theme_custom_background</item><item name="android:windowBackground">?android:attr/colorBackground</item><item name="android:colorAccent">#fff50057</item><item name="android:colorControlNormal">#fff44336</item><item name="android:colorButtonNormal">#ff00c853</item><item name="android:textColorPrimary">@android:color/white</item><item name="android:colorControlActivated">#fffafafa</item><item name="android:textColorSecondary">#ff424242</item></style>
+    <item name="android:colorBackground">@color/theme_custom_background</item>
+    <item name="android:windowBackground">?android:attr/colorBackground</item>
+    <item name="android:colorAccent">@color/accent</item>
+    <item name="android:colorControlNormal">#fff44336</item>
+    <item name="android:colorButtonNormal">#ff00c853</item>
+    <item name="android:textColorPrimary">@android:color/white</item>
+    <item name="android:colorControlActivated">#fffafafa</item>
+    <item name="android:textColorSecondary">#ff424242</item>
+  </style>
+
+  <style name="Theme.Custom.Toolbar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:colorPrimary">@color/primary</item>
+    <item name="android:colorPrimaryDark">@color/primaryDark</item>
+    <item name="android:textColorPrimary">@android:color/white</item>
+    <item name="android:colorControlNormal">@android:color/white</item>
+  </style>
 </resources>

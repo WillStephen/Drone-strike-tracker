@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <item name="primary" type="color">#ff00bcd4</item>
-  <item name="primarydark" type="color">#ff0097a7</item>
-  <item name="accent" type="color">#ff1744</item>
-  <item name="normalTab" type="color">#B3E5FC</item>
-  <item name="selectedTab" type="color">#ffffff</item>
+  <color name="primary">#d50000</color>
+  <color name="primaryDark">#b71c1c</color>
+  <color name="accent">#ff1744</color>
+  <color name="normalTab">#6f1111</color>
+  <color name="selectedTab">#ffebee</color>
 </resources>

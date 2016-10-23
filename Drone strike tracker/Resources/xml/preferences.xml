@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="w"
+        android:title="w"
+        android:summary="w"
+        android:defaultValue="true" />
+    <ListPreference
+        android:key="map_type"
+        android:title="@string/MapTypeTitle"
+        android:dialogTitle="@string/MapTypeTitle"
+        android:defaultValue="@string/DefaultMapType"
+        android:entries="@array/map_type_array"
+        android:entryValues="@array/map_type_array"/>
+</PreferenceScreen>

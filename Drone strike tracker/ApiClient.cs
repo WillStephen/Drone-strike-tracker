@@ -26,7 +26,7 @@ namespace Drone_strike_tracker
             using (var client = new HttpClient())
             {
                 client.Timeout = new TimeSpan(0, 0, 0, 5);
-                using (var s = await client.GetStreamAsync(Settings.ApiUri))
+                using (var s = await client.GetStreamAsync(Settings.MinApiUrl))
                 using (var sr = new StreamReader(s))
                 using (var reader = new JsonTextReader(sr))
                 {

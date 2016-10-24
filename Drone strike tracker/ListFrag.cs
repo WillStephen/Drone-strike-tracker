@@ -20,21 +20,23 @@ namespace Drone_strike_tracker
         private SwipeRefreshLayout Refresher { get; set; }
         public event EventHandler<int> Refreshed;
 
-        public ListFrag()
-        {
-        }
+        public bool Loaded;
 
         public override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
         }
 
-        public override async void OnResume()
+        public override async void OnStart()
         {
-            base.OnResume();
-            var progress = ProgressDialog.Show(Activity, "", "Checking for new strikes...", true);
-            await RefreshList(Refresher);
-            progress.Hide();
+            OnResume();
+            if (Loaded != true)
+            {
+                var progress = ProgressDialog.Show(Activity, "", "Checking for new strikes...", true);
+                await RefreshList(Refresher);
+                progress.Hide();
+                Loaded = true;
+            }
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container,

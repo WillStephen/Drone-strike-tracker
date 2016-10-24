@@ -33,6 +33,7 @@ namespace Drone_strike_tracker
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
     }

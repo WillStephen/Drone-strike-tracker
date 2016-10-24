@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Media;
 using Android.OS;
 using Android.Views;
 using Drone_strike_tracker.Models;
@@ -27,6 +26,46 @@ namespace Drone_strike_tracker
             base.OnCreate(bundle);
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            if (Map != null)
+            {
+                if (MapType != MapTypeToNum(Settings.MapType))
+                {
+                    MapType = MapTypeToNum(Settings.MapType);
+                    Map.MapType = MapType;
+                }
+            }
+        }
+
+        private static int MapTypeToNum(string type)
+        {
+            switch (type)
+            {
+                case "Hybrid":
+                {
+                    return 4;
+                }
+                case "Normal":
+                {
+                    return 1;
+                }
+                case "Satellite":
+                {
+                    return 2;
+                }
+                case "Terrain":
+                {
+                    return 3;
+                }
+                default:
+                {
+                    return 0;
+                }
+            }
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle bundle)
         {
@@ -36,38 +75,10 @@ namespace Drone_strike_tracker
             
             mapFrag.GetMapAsync(this);
 
-            switch (Settings.MapType)
-            {
-                case "Hybrid":
-                {
-                    MapType = 4;
-                    break;
-                }
-                case "Normal":
-                {
-                    MapType = 1;
-                    break;
-                }
-                case "Satellite":
-                {
-                    MapType = 2;
-                    break;
-                }
-                case "Terrain":
-                {
-                    MapType = 3;
-                    break;
-                }
-                default:
-                {
-                    MapType = 0;
-                    break;
-                }
-            }
-
             MapReadyAction += delegate (GoogleMap googleMap)
             {
                 Map = googleMap;
+                MapType = MapTypeToNum(Settings.MapType);
                 Map.MapType = MapType;
                 Map.UiSettings.ZoomControlsEnabled = true;
                 Map.UiSettings.CompassEnabled = false;

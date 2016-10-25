@@ -3051,8 +3051,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a002a
 			public const int collapseActionView = 2131361834;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int container = 2131361936;
+			// aapt resource value: 0x7f0a0095
+			public const int container = 2131361941;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int contentPanel = 2131361877;
@@ -3113,9 +3113,6 @@ namespace Drone_strike_tracker
 			
 			// aapt resource value: 0x7f0a0049
 			public const int expand_activities_button = 2131361865;
-			
-			// aapt resource value: 0x7f0a0097
-			public const int expandedArea = 2131361943;
 			
 			// aapt resource value: 0x7f0a005c
 			public const int expanded_menu = 2131361884;
@@ -3195,8 +3192,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0085
 			public const int media_actions = 2131361925;
 			
-			// aapt resource value: 0x7f0a009c
-			public const int menu_settings = 2131361948;
+			// aapt resource value: 0x7f0a009b
+			public const int menu_settings = 2131361947;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int middle = 2131361832;
@@ -3384,8 +3381,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0052
 			public const int topPanel = 2131361874;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int topToolbar = 2131361947;
+			// aapt resource value: 0x7f0a0090
+			public const int topToolbar = 2131361936;
 			
 			// aapt resource value: 0x7f0a0074
 			public const int touch_outside = 2131361908;
@@ -3393,11 +3390,11 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0094
 			public const int txtDate = 2131361940;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int txtDeaths = 2131361941;
-			
 			// aapt resource value: 0x7f0a0096
-			public const int txtNarrative = 2131361942;
+			public const int txtDeaths = 2131361942;
+			
+			// aapt resource value: 0x7f0a0097
+			public const int txtNarrative = 2131361943;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
@@ -4621,6 +4618,9 @@ namespace Drone_strike_tracker
 			
 			// aapt resource value: 0x7f0b015c
 			public const int Theme_Custom_Toolbar = 2131427676;
+			
+			// aapt resource value: 0x7f0b015d
+			public const int Theme_Custom_Toolbar_Card = 2131427677;
 			
 			// aapt resource value: 0x7f0b014c
 			public const int Theme_Design = 2131427660;

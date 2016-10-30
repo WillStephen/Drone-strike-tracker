@@ -26,7 +26,9 @@ namespace Drone_strike_tracker
                 using (var reader = new JsonTextReader(sr))
                 {
                     var serializer = new JsonSerializer();
-                    return await Task.Factory.StartNew(() => serializer.Deserialize<StrikeListContainer>(reader));
+                    var list = await Task.Factory.StartNew(() => serializer.Deserialize<StrikeListContainer>(reader));
+                    list.Strike.Reverse();
+                    return list;
                 }
             }
         }

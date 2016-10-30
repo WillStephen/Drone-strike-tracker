@@ -38,7 +38,7 @@ namespace Drone_strike_tracker
                 var progress = ProgressDialog.Show(Activity, "", "Checking for new strikes...", true);
                 await RefreshList(Refresher);
                 progress.Hide();
-                Snackbar.Make(MrecyclerView, $"{Madapter.ItemCount} strikes to date.", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
+                Snackbar.Make(MrecyclerView, $"{Madapter.ItemCount} strikes to date", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
 
                 Loaded = true;
             }
@@ -64,6 +64,32 @@ namespace Drone_strike_tracker
             Refresher = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             Refresher.NestedScrollingEnabled = true;
 
+            Madapter.MenuItemClick += (sender, i) =>
+            {
+                var strike = Madapter.StrikeList[i.Item2];
+
+                switch (i.Item1.ItemId)
+                {
+                    case Resource.Id.viewTweet:
+                    {
+                        var uri = Android.Net.Uri.Parse($"{Settings.TwitterUrlStart}{strike.Tweet_Id}");
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+                        break;
+                    }
+                    case Resource.Id.searchInBrowser:
+                    {
+                        var searchTerm = $"{strike.Country} drone strike {strike.Date:dd MMMM yyyy}";
+                        var uri = Android.Net.Uri.Parse(string.Format(Settings.GoogleSearchUrlTemplate, searchTerm));
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+                        break;
+                    }
+                    default:
+                        return;
+                }
+            };
+
             Refresher.Refresh += async delegate
             {
                 var startCount = Madapter.ItemCount;
@@ -71,32 +97,15 @@ namespace Drone_strike_tracker
                 var newStrikes = Madapter.ItemCount - startCount;
                 if (newStrikes > 0)
                 {
-                    Snackbar.Make(MrecyclerView, $"{newStrikes} new strikes.", Snackbar.LengthLong).Show();
+                    Snackbar.Make(MrecyclerView, $"{newStrikes} new strikes", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
                 }
                 else
                 {
-                    Snackbar.Make(MrecyclerView, "No new strikes.", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
+                    Snackbar.Make(MrecyclerView, "No new strikes", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
                 }
             };
 
             return rootView;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.viewTweet:
-                    {
-                        var uri = Android.Net.Uri.Parse($"https://twitter.com/dronestream/status/");
-                        var intent = new Intent(Intent.ActionView, uri);
-                        StartActivity(intent);
-                        return true;
-                    }
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-            }
         }
 
         public async Task RefreshList(SwipeRefreshLayout sender)
@@ -122,7 +131,6 @@ namespace Drone_strike_tracker
             if (addedElements > 0)
             {
                 Madapter.NotifyItemRangeInserted(0, addedElements);
-                //Madapter.NotifyDataSetChanged();
             }
             MlayoutManager.ScrollToPosition(0);
             Refreshed.Invoke(Refreshed, 0);
@@ -155,13 +163,12 @@ namespace Drone_strike_tracker
             CardToolbar = itemView.FindViewById<Toolbar>(Resource.Id.cardToolbar);
             itemView.Click += (sender, e) => listener(AdapterPosition);
         }
-
-
     }
 
     public class StrikeListAdapter : RecyclerView.Adapter
     {
         public event EventHandler<int> ItemClick;
+        public event EventHandler<Tuple<IMenuItem, int>> MenuItemClick;
         public List<Strike> StrikeList;
         //public int ExpandedPosition = -1;
 
@@ -192,6 +199,10 @@ namespace Drone_strike_tracker
             vh.Deaths.Text = $"{currentStrike.Deaths} deaths";
             vh.Narrative.Text = currentStrike.Narrative;
             vh.CardToolbar.InflateMenu(Resource.Menu.cardtoolbar);
+            vh.CardToolbar.MenuItemClick += (sender, args) =>
+            {
+                MenuItemClick(this, new Tuple<IMenuItem, int>(args.Item, position));
+            };
             vh.ExpandedArea.Visibility = ViewStates.Gone;
             //vh.ExpandedArea.Visibility = position == ExpandedPosition ? ViewStates.Visible : ViewStates.Gone;
         }

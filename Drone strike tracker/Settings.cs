@@ -26,6 +26,8 @@ namespace Drone_strike_tracker
 
         public const string MinApiUrl = "http://api.dronestre.am/min";
         public const string FullApiUrl = "http://api.dronestre.am/data";
+        public const string TwitterUrlStart = "https://twitter.com/dronestream/status/";
+        public const string GoogleSearchUrlTemplate = "http://www.google.com/search?q={0}&tbm=isch";
 
         #endregion
 

@@ -80,7 +80,7 @@ namespace Drone_strike_tracker
                 Map = googleMap;
                 MapType = MapTypeToNum(Settings.MapType);
                 Map.MapType = MapType;
-                Map.UiSettings.ZoomControlsEnabled = true;
+                Map.UiSettings.ZoomControlsEnabled = false;
                 Map.UiSettings.CompassEnabled = false;
             };
 

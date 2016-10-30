@@ -3027,6 +3027,9 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a008f
 			public const int card = 2131361935;
 			
+			// aapt resource value: 0x7f0a0090
+			public const int cardToolbar = 2131361936;
+			
 			// aapt resource value: 0x7f0a0036
 			public const int center = 2131361846;
 			
@@ -3051,8 +3054,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a002a
 			public const int collapseActionView = 2131361834;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int container = 2131361941;
+			// aapt resource value: 0x7f0a0094
+			public const int container = 2131361940;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int contentPanel = 2131361877;
@@ -3114,6 +3117,9 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0049
 			public const int expand_activities_button = 2131361865;
 			
+			// aapt resource value: 0x7f0a0098
+			public const int expandedArea = 2131361944;
+			
 			// aapt resource value: 0x7f0a005c
 			public const int expanded_menu = 2131361884;
 			
@@ -3174,8 +3180,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0080
 			public const int linearLayout1 = 2131361920;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int linearLayout2 = 2131361944;
+			// aapt resource value: 0x7f0a0099
+			public const int linearLayout2 = 2131361945;
 			
 			// aapt resource value: 0x7f0a0018
 			public const int listMode = 2131361816;
@@ -3192,8 +3198,8 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0085
 			public const int media_actions = 2131361925;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int menu_settings = 2131361947;
+			// aapt resource value: 0x7f0a00a0
+			public const int menu_settings = 2131361952;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int middle = 2131361832;
@@ -3234,11 +3240,11 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a005f
 			public const int radio = 2131361887;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int recyclerView = 2131361946;
+			// aapt resource value: 0x7f0a009b
+			public const int recyclerView = 2131361947;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int refresher = 2131361945;
+			// aapt resource value: 0x7f0a009a
+			public const int refresher = 2131361946;
 			
 			// aapt resource value: 0x7f0a0092
 			public const int region = 2131361938;
@@ -3266,6 +3272,9 @@ namespace Drone_strike_tracker
 			
 			// aapt resource value: 0x7f0a0044
 			public const int scrollable = 2131361860;
+			
+			// aapt resource value: 0x7f0a009f
+			public const int searchInBrowser = 2131361951;
 			
 			// aapt resource value: 0x7f0a0069
 			public const int search_badge = 2131361897;
@@ -3381,14 +3390,14 @@ namespace Drone_strike_tracker
 			// aapt resource value: 0x7f0a0052
 			public const int topPanel = 2131361874;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int topToolbar = 2131361936;
+			// aapt resource value: 0x7f0a009c
+			public const int topToolbar = 2131361948;
 			
 			// aapt resource value: 0x7f0a0074
 			public const int touch_outside = 2131361908;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int txtDate = 2131361940;
+			// aapt resource value: 0x7f0a0095
+			public const int txtDate = 2131361941;
 			
 			// aapt resource value: 0x7f0a0096
 			public const int txtDeaths = 2131361942;
@@ -3401,6 +3410,12 @@ namespace Drone_strike_tracker
 			
 			// aapt resource value: 0x7f0a001f
 			public const int useLogo = 2131361823;
+			
+			// aapt resource value: 0x7f0a009d
+			public const int viewOnMap = 2131361949;
+			
+			// aapt resource value: 0x7f0a009e
+			public const int viewTweet = 2131361950;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int view_offset_helper = 2131361802;
@@ -3646,7 +3661,10 @@ namespace Drone_strike_tracker
 		{
 			
 			// aapt resource value: 0x7f0e0000
-			public const int maintoolbar = 2131623936;
+			public const int cardtoolbar = 2131623936;
+			
+			// aapt resource value: 0x7f0e0001
+			public const int maintoolbar = 2131623937;
 			
 			static Menu()
 			{

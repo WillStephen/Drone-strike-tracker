@@ -1,5 +1,4 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -11,8 +10,6 @@ using ViewPager = Android.Support.V4.View.ViewPager;
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-
-//using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Drone_strike_tracker
 {
@@ -53,8 +50,7 @@ namespace Drone_strike_tracker
             var adapter = new TabsFragmentPagerAdapter(SupportFragmentManager, fragments, titles);
             viewPager.Adapter = adapter;
 
-            var tabLayout = FindViewById<Android.Support.Design.Widget.TabLayout>(Resource.Id.tabs);
-            tabLayout.SetSelectedTabIndicatorColor(Resource.Color.selectedTab);
+            var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
 
             tabLayout.SetupWithViewPager(viewPager);
 

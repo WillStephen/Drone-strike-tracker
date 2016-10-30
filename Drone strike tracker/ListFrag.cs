@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Drone_strike_tracker.Models;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Drone_strike_tracker
 {
@@ -35,6 +38,8 @@ namespace Drone_strike_tracker
                 var progress = ProgressDialog.Show(Activity, "", "Checking for new strikes...", true);
                 await RefreshList(Refresher);
                 progress.Hide();
+                Snackbar.Make(MrecyclerView, $"{Madapter.ItemCount} strikes to date.", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
+
                 Loaded = true;
             }
         }
@@ -61,10 +66,37 @@ namespace Drone_strike_tracker
 
             Refresher.Refresh += async delegate
             {
+                var startCount = Madapter.ItemCount;
                 await RefreshList(Refresher);
+                var newStrikes = Madapter.ItemCount - startCount;
+                if (newStrikes > 0)
+                {
+                    Snackbar.Make(MrecyclerView, $"{newStrikes} new strikes.", Snackbar.LengthLong).Show();
+                }
+                else
+                {
+                    Snackbar.Make(MrecyclerView, "No new strikes.", Snackbar.LengthLong).SetAction("OK", (v) => { }).Show();
+                }
             };
 
             return rootView;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.viewTweet:
+                    {
+                        var uri = Android.Net.Uri.Parse($"https://twitter.com/dronestream/status/");
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+                        return true;
+                    }
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
         public async Task RefreshList(SwipeRefreshLayout sender)
@@ -76,9 +108,9 @@ namespace Drone_strike_tracker
                 await Task.Run(async () =>
                 {
                     var client = new ApiClient();
-                    var list = await client.GetStrikeListAsync(ApiClient.RequestType.Min);
+                    var list = await client.GetStrikeListAsync();
                     startCount = StrikeList.Count;
-                    addedElements = CompareLists.Compare(StrikeList, list.Strike);
+                    addedElements = CompareLists.Compare(Madapter.StrikeList, list.Strike);
                 });
             }
             catch (Exception)
@@ -90,6 +122,7 @@ namespace Drone_strike_tracker
             if (addedElements > 0)
             {
                 Madapter.NotifyItemRangeInserted(0, addedElements);
+                //Madapter.NotifyDataSetChanged();
             }
             MlayoutManager.ScrollToPosition(0);
             Refreshed.Invoke(Refreshed, 0);
@@ -106,6 +139,7 @@ namespace Drone_strike_tracker
         public TextView Narrative { get; }
         public LinearLayout ExpandedArea { get; }
         public CardView Card { get; }
+        public Toolbar CardToolbar { get; }
 
         public StrikeViewHolder(View itemView, Action<int> listener)
             : base(itemView)
@@ -118,16 +152,18 @@ namespace Drone_strike_tracker
             Narrative = itemView.FindViewById<TextView>(Resource.Id.txtNarrative);
             ExpandedArea = itemView.FindViewById<LinearLayout>(Resource.Id.expandedArea);
             Card = itemView.FindViewById<CardView>(Resource.Id.card);
-            //Card.InflateMenu(Resource.Menu.maintoolbar);
+            CardToolbar = itemView.FindViewById<Toolbar>(Resource.Id.cardToolbar);
             itemView.Click += (sender, e) => listener(AdapterPosition);
         }
+
+
     }
 
     public class StrikeListAdapter : RecyclerView.Adapter
     {
         public event EventHandler<int> ItemClick;
         public List<Strike> StrikeList;
-        public int ExpandedPosition = -1;
+        //public int ExpandedPosition = -1;
 
         public StrikeListAdapter(List<Strike> strikeList)
         {
@@ -150,30 +186,32 @@ namespace Drone_strike_tracker
             var vh = holder as StrikeViewHolder;
             var currentStrike = StrikeList[position];
             vh.Flag.SetImageResource(CountryConverter.Convert(currentStrike.Country));
-            vh.Region.Text = "";
+            vh.Region.Text = currentStrike.Location + ", ";
             vh.Country.Text = currentStrike.Country;
             vh.Date.Text = $"{currentStrike.Date:dd MMMM yyyy}";
             vh.Deaths.Text = $"{currentStrike.Deaths} deaths";
             vh.Narrative.Text = currentStrike.Narrative;
-            vh.ExpandedArea.Visibility = position == ExpandedPosition ? ViewStates.Visible : ViewStates.Gone;
+            vh.CardToolbar.InflateMenu(Resource.Menu.cardtoolbar);
+            vh.ExpandedArea.Visibility = ViewStates.Gone;
+            //vh.ExpandedArea.Visibility = position == ExpandedPosition ? ViewStates.Visible : ViewStates.Gone;
         }
 
         public override int ItemCount => StrikeList.Count;
 
         private void OnClick(int position)
         {
-            if (position == ExpandedPosition)
-            {
-                ExpandedPosition = -1;
-                NotifyItemChanged(position);
-                return;
-            }
+            //if (position == ExpandedPosition)
+            //{
+            //    ExpandedPosition = -1;
+            //    NotifyItemChanged(position);
+            //    return;
+            //}
 
-            var lastPosition = ExpandedPosition;
-            ExpandedPosition = position;
+            //var lastPosition = ExpandedPosition;
+            //ExpandedPosition = position;
 
-            NotifyItemChanged(lastPosition);
-            NotifyItemChanged(ExpandedPosition);
+            //NotifyItemChanged(lastPosition);
+            //NotifyItemChanged(ExpandedPosition);
         }
     }
 }

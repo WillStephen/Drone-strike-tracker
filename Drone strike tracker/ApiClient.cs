@@ -16,17 +16,12 @@ namespace Drone_strike_tracker
             Fake
         }
 
-        public async Task<StrikeListContainer> GetStrikeListAsync(RequestType requestType)
+        public async Task<StrikeListContainer> GetStrikeListAsync()
         {
-            switch (requestType)
-            {
-                case RequestType.Min:
-                    break;
-            }
             using (var client = new HttpClient())
             {
                 client.Timeout = new TimeSpan(0, 0, 0, 5);
-                using (var s = await client.GetStreamAsync(Settings.MinApiUrl))
+                using (var s = await client.GetStreamAsync(Settings.FullApiUrl))
                 using (var sr = new StreamReader(s))
                 using (var reader = new JsonTextReader(sr))
                 {
